@@ -38,13 +38,13 @@ function JsonPanel({ label, value }: { label: string; value: unknown }) {
   const pretty = usePrettyJson(value);
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+    <section className="rounded-2xl border border-black/20 bg-[#fffaf5] p-4">
       <header className="mb-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
           {label}
         </p>
       </header>
-      <pre className="max-h-64 overflow-auto rounded-xl bg-white p-3 font-mono text-xs text-slate-600 shadow-sm">
+      <pre className="max-h-64 overflow-auto rounded-xl bg-white p-3 font-mono text-xs text-black/70 shadow-sm">
         {pretty}
       </pre>
     </section>
@@ -232,7 +232,7 @@ function App() {
       {cartItems.map((item) => (
         <div
           key={item.name}
-          className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-3"
+          className="flex items-center justify-between rounded-2xl border border-black/20 bg-[#fffaf5] p-3"
         >
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm">
@@ -242,10 +242,8 @@ function App() {
               })()}
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-900">
-                {item.name}
-              </p>
-              <p className="text-xs text-slate-500">
+              <p className="text-sm font-semibold text-black">{item.name}</p>
+              <p className="text-xs text-black/60">
                 Qty <span className="font-mono">{item.quantity ?? 0}</span>
               </p>
             </div>
@@ -254,7 +252,7 @@ function App() {
             <button
               type="button"
               onClick={() => adjustQuantity(item.name, -1)}
-              className="h-8 w-8 rounded-full border border-slate-300 text-lg font-semibold text-slate-700 transition hover:bg-white"
+              className="h-8 w-8 rounded-full border border-black/30 text-lg font-semibold text-black/70 transition hover:bg-white"
               aria-label={`Decrease ${item.name}`}
             >
               -
@@ -262,7 +260,7 @@ function App() {
             <button
               type="button"
               onClick={() => adjustQuantity(item.name, 1)}
-              className="h-8 w-8 rounded-full border border-slate-300 text-lg font-semibold text-slate-700 transition hover:bg-white"
+              className="h-8 w-8 rounded-full border border-black/30 text-lg font-semibold text-black/70 transition hover:bg-white"
               aria-label={`Increase ${item.name}`}
             >
               +
@@ -272,17 +270,18 @@ function App() {
       ))}
     </div>
   ) : (
-    <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
+    <div className="rounded-2xl border border-dashed border-black/40 bg-[#fffaf5] p-6 text-center text-sm text-black/60">
       Your cart is empty. Add a few items to get started.
     </div>
   );
 
   return (
     <div
-      className="min-h-screen w-full bg-white text-slate-900 bg-[radial-gradient(circle_at_top_left,_#fff7ed_0,_#ffffff_55%),radial-gradient(circle_at_bottom_right,_#eef2ff_0,_#ffffff_45%)]"
+      className="min-h-screen w-full bg-white text-black bg-[radial-gradient(circle_at_top_left,_#fff7ed_0,_#ffffff_55%),radial-gradient(circle_at_bottom_right,_#eef2ff_0,_#ffffff_45%)]"
       style={{
         fontFamily: '"Trebuchet MS", "Gill Sans", "Lucida Grande", sans-serif',
       }}
+      data-theme="light"
     >
       <style>{animationStyles}</style>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 md:px-6 lg:px-8">
@@ -290,13 +289,13 @@ function App() {
           className="space-y-2"
           style={{ animation: "fadeUp 0.6s ease-out both" }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
             Simple cart
           </p>
           <h1 className="text-2xl font-semibold tracking-tight">
             Pick a few essentials
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-black/70">
             Update your cart through the chat or tap to add a suggestion or
             adjust quantities.
           </p>
@@ -311,7 +310,7 @@ function App() {
         >
           <section className="space-y-4">
             <header className="flex items-center justify-between">
-              <p className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+              <p className="text-sm font-semibold uppercase tracking-widest text-black/70">
                 Suggested items
               </p>
             </header>
@@ -319,7 +318,7 @@ function App() {
               {suggestedItems.map(({ name, description, Icon }, index) => (
                 <div
                   key={name}
-                  className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                  className="flex items-center justify-between gap-3 rounded-2xl border border-black/20 bg-[#fffaf5] p-4"
                   style={{
                     animation: "fadeUp 0.5s ease-out both",
                     animationDelay: `${120 + index * 80}ms`,
@@ -330,16 +329,16 @@ function App() {
                       <Icon className="h-7 w-7" />
                     </div>
                     <div>
-                      <p className="text-base font-semibold text-slate-900">
+                      <p className="text-base font-semibold text-black">
                         {name}
                       </p>
-                      <p className="text-xs text-slate-500">{description}</p>
+                      <p className="text-xs text-black/60">{description}</p>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => addItem(name)}
-                    className="rounded-full bg-amber-200 px-3 py-1.5 text-xs font-semibold text-slate-900 transition hover:bg-amber-300"
+                    className="rounded-full bg-amber-200 px-3 py-1.5 text-xs font-semibold text-black transition hover:bg-amber-300"
                   >
                     Add
                   </button>
@@ -350,10 +349,10 @@ function App() {
 
           <section className="space-y-4">
             <header className="flex items-center justify-between">
-              <p className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+              <p className="text-sm font-semibold uppercase tracking-widest text-black/70">
                 Cart
               </p>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-black/60">
                 {cartItems.length} items
               </span>
             </header>
@@ -361,7 +360,7 @@ function App() {
             <button
               type="button"
               disabled={cartItems.length === 0}
-              className="w-full rounded-2xl border border-slate-200 bg-white py-3 text-sm font-semibold text-slate-500 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-70"
+              className="w-full rounded-2xl border border-black/30 bg-white py-3 text-sm font-semibold text-black/70 transition hover:border-black/50 disabled:cursor-not-allowed disabled:opacity-70"
             >
               Check out
             </button>
@@ -370,10 +369,10 @@ function App() {
 
         <section className="space-y-3">
           <header className="flex items-center justify-between">
-            <p className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+            <p className="text-sm font-semibold uppercase tracking-widest text-black/70">
               Widget state & output
             </p>
-            <span className="text-xs text-slate-400">Debug view</span>
+            <span className="text-xs text-black/60">Debug view</span>
           </header>
           <div className="grid gap-4 lg:grid-cols-2">
             <JsonPanel label="window.openai.widgetState" value={cartState} />
